@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Modern booking websites that turn Instagram visitors into real appointments for local businesses.">
+  <meta name="theme-color" content="#07111f">
+  <title>Instagram Booking Website | Valiev Company</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="#top" aria-label="Valiev Company home">
+        <span class="brand-mark">V</span>
+        <span>Valiev Company</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <a href="#demo">Demo</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a class="nav-cta" href="#contact">Get your website</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section">
+      <div class="hero-glow hero-glow-one"></div>
+      <div class="hero-glow hero-glow-two"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span></span> Websites built for Instagram traffic</div>
+          <h1>Turn Instagram Visitors Into <em>Real Bookings</em></h1>
+          <p class="hero-lead">We build fast, modern booking websites for local businesses.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#demo">View Demo <span aria-hidden="true">↗</span></a>
+            <a class="button button-secondary" href="#contact">Get Your Website</a>
+          </div>
+          <div class="hero-proof" aria-label="Website features">
+            <div><span class="check">✓</span> Mobile-first</div>
+            <div><span class="check">✓</span> Fast & focused</div>
+            <div><span class="check">✓</span> Custom branded</div>
+          </div>
+        </div>
+
+        <div class="phone-stage reveal" aria-label="Mobile booking website preview">
+          <div class="float-card float-card-top"><span class="status-dot"></span> New booking</div>
+          <div class="phone-shell">
+            <div class="phone-top"><span>9:41</span><span class="phone-island"></span><span>● ◒</span></div>
+            <div class="phone-screen">
+              <div class="preview-cover">
+                <span class="preview-logo">NORTH & CO.</span>
+                <span class="preview-tag">Premium Grooming</span>
+              </div>
+              <div class="preview-content">
+                <p class="preview-kicker">WELCOME</p>
+                <h2>Look sharp.<br>Feel confident.</h2>
+                <p>Reserve your next appointment in less than a minute.</p>
+                <a href="#demo" class="preview-button">Book now <span>→</span></a>
+                <div class="preview-rating"><span>★★★★★</span> Demo business</div>
+              </div>
+            </div>
+          </div>
+          <div class="float-card float-card-bottom"><strong>01:00</strong><span>Average booking flow</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="audience-strip" aria-label="Designed for local businesses">
+      <div class="container audience-list">
+        <span>BARBERSHOPS</span><i>◆</i><span>BEAUTY SALONS</span><i>◆</i><span>DENTAL CLINICS</span><i>◆</i><span>COACHES</span><i>◆</i><span>PHOTOGRAPHERS</span>
+      </div>
+    </section>
+
+    <section class="section demo-section" id="demo">
+      <div class="container">
+        <div class="section-heading centered reveal">
+          <div class="eyebrow"><span></span> Interactive demo</div>
+          <h2>A booking experience your customers will <em>actually finish.</em></h2>
+          <p>Try the flow below. It is designed to feel quick, clear and effortless on a phone.</p>
+        </div>
+
+        <div class="booking-layout reveal">
+          <aside class="booking-summary">
+            <div>
+              <span class="summary-label">DEMO BUSINESS</span>
+              <h3>North & Co.<br>Barbershop</h3>
+              <p>Premium cuts in a relaxed, modern space.</p>
+            </div>
+            <div class="summary-details">
+              <div><span class="summary-icon">⌖</span><p><strong>Austin, Texas</strong><br>1240 South Congress Ave.</p></div>
+              <div><span class="summary-icon">◷</span><p><strong>Open today</strong><br>9:00 AM – 7:00 PM</p></div>
+            </div>
+            <div class="demo-note">Built for demonstration. No real appointment is submitted.</div>
+          </aside>
+
+          <div class="booking-card">
+            <div class="booking-head">
+              <div>
+                <span class="step-label">STEP <b id="step-number">1</b> OF 5</span>
+                <h3 id="step-title">Choose a service</h3>
+              </div>
+              <button class="text-button" id="booking-reset" type="button">Start over</button>
+            </div>
+            <div class="progress-track"><span id="booking-progress"></span></div>
+
+            <form id="booking-form" novalidate>
+              <div class="booking-step active" data-step="1">
+                <div class="choice-grid service-grid" id="service-options">
+                  <button class="choice-card" type="button" data-value="Signature Haircut" data-price="$42" data-duration="45 min">
+                    <span class="choice-icon">✦</span><span><strong>Signature Haircut</strong><small>45 min</small></span><b>$42</b>
+                  </button>
+                  <button class="choice-card" type="button" data-value="Haircut & Beard" data-price="$58" data-duration="60 min">
+                    <span class="choice-icon">⌁</span><span><strong>Haircut & Beard</strong><small>60 min</small></span><b>$58</b>
+                  </button>
+                  <button class="choice-card" type="button" data-value="Beard Sculpt" data-price="$30" data-duration="30 min">
+                    <span class="choice-icon">◇</span><span><strong>Beard Sculpt</strong><small>30 min</small></span><b>$30</b>
+                  </button>
+                </div>
+              </div>
+
+              <div class="booking-step" data-step="2">
+                <div class="choice-grid specialist-grid" id="specialist-options">
+                  <button class="specialist-card" type="button" data-value="Marcus Reed">
+                    <span class="avatar avatar-one">MR</span><span><strong>Marcus Reed</strong><small>Master barber · 8 years</small></span><i>→</i>
+                  </button>
+                  <button class="specialist-card" type="button" data-value="Jordan Lee">
+                    <span class="avatar avatar-two">JL</span><span><strong>Jordan Lee</strong><small>Stylist · 6 years</small></span><i>→</i>
+                  </button>
+                  <button class="specialist-card" type="button" data-value="Any available professional">
+                    <span class="avatar avatar-any">✦</span><span><strong>No preference</strong><small>First available professional</small></span><i>→</i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="booking-step" data-step="3">
+                <div class="calendar">
+                  <div class="calendar-head">
+                    <button type="button" id="prev-month" aria-label="Previous month">←</button>
+                    <strong id="month-label"></strong>
+                    <button type="button" id="next-month" aria-label="Next month">→</button>
+                  </div>
+                  <div class="weekdays"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
+                  <div class="calendar-days" id="calendar-days"></div>
+                </div>
+              </div>
+
+              <div class="booking-step" data-step="4">
+                <p class="time-caption" id="selected-day-label">Available times</p>
+                <div class="time-grid" id="time-options">
+                  <button type="button" data-value="9:00 AM">9:00 AM</button>
+                  <button type="button" data-value="10:30 AM">10:30 AM</button>
+                  <button type="button" data-value="12:00 PM">12:00 PM</button>
+                  <button type="button" data-value="2:30 PM">2:30 PM</button>
+                  <button type="button" data-value="4:00 PM">4:00 PM</button>
+                  <button type="button" data-value="5:30 PM">5:30 PM</button>
+                </div>
+              </div>
+
+              <div class="booking-step" data-step="5">
+                <div class="selected-appointment" id="appointment-summary"></div>
+                <div class="form-grid">
+                  <label>Full name<input type="text" id="customer-name" name="name" autocomplete="name" placeholder="Your name" required></label>
+                  <label>Phone number<input type="tel" id="customer-phone" name="phone" autocomplete="tel" placeholder="(555) 123-4567" required></label>
+                </div>
+                <p class="form-error" id="form-error" role="alert"></p>
+                <button class="button button-primary book-button" type="submit">Book Appointment <span>→</span></button>
+                <!-- FUTURE WEBHOOK: replace the demo submit handler in script.js with fetch('YOUR_WEBHOOK_URL', {...}) -->
+              </div>
+
+              <div class="success-state" id="success-state" aria-live="polite">
+                <div class="success-check">✓</div>
+                <span>DEMO REQUEST COMPLETE</span>
+                <h3>Your appointment request is ready.</h3>
+                <p>This is how your customer sees a clear confirmation after booking.</p>
+                <div class="success-summary" id="success-summary"></div>
+                <button class="button button-secondary" id="book-another" type="button">Try Again</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section benefits-section">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow"><span></span> Built to convert</div>
+          <h2>Make every profile visit <em>count.</em></h2>
+        </div>
+        <div class="benefits-grid">
+          <article class="feature-card reveal"><span class="feature-number">01</span><div class="feature-icon">▱</div><h3>Mobile-first design</h3><p>Built for the screen your Instagram customers already have in their hands.</p></article>
+          <article class="feature-card reveal"><span class="feature-number">02</span><div class="feature-icon">↗</div><h3>More bookings from Instagram</h3><p>Give visitors one focused path from interest to a completed request.</p></article>
+          <article class="feature-card reveal"><span class="feature-number">03</span><div class="feature-icon">✓</div><h3>Easy customer experience</h3><p>Clear choices, fewer distractions and a smooth booking flow.</p></article>
+          <article class="feature-card reveal"><span class="feature-number">04</span><div class="feature-icon">◇</div><h3>Custom branding</h3><p>Your colors, voice, services and visual identity — not a generic template.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section process-section" id="process">
+      <div class="container process-grid">
+        <div class="section-heading reveal">
+          <div class="eyebrow"><span></span> How it works</div>
+          <h2>Three simple steps.<br><em>Zero confusion.</em></h2>
+          <p>A direct experience designed around how customers discover local businesses today.</p>
+          <a href="#demo" class="inline-link">Experience the demo <span>→</span></a>
+        </div>
+        <div class="process-list reveal">
+          <article><span>01</span><div><h3>Customer opens your Instagram link</h3><p>One tap takes them to your branded mobile website.</p></div></article>
+          <article><span>02</span><div><h3>Customer chooses a service</h3><p>They select what they need, who they prefer and a convenient time.</p></div></article>
+          <article><span>03</span><div><h3>Business receives the booking request</h3><p>The request is ready to connect to your preferred workflow in a future integration.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section services-section" id="services">
+      <div class="container">
+        <div class="section-heading split-heading reveal">
+          <div><div class="eyebrow"><span></span> What we create</div><h2>Digital experiences built around <em>your business.</em></h2></div>
+          <p>Focused, professional websites for local businesses that want a stronger online presence.</p>
+        </div>
+        <div class="services-list">
+          <article class="service-row reveal"><span>01</span><h3>Booking websites</h3><p>Streamlined appointment flows for service businesses.</p><i>↗</i></article>
+          <article class="service-row reveal"><span>02</span><h3>Landing pages</h3><p>Focused pages for offers, campaigns and new services.</p><i>↗</i></article>
+          <article class="service-row reveal"><span>03</span><h3>Online forms</h3><p>Simple, branded inquiry and lead collection experiences.</p><i>↗</i></article>
+          <article class="service-row reveal"><span>04</span><h3>Custom business websites</h3><p>A complete digital home shaped around your brand.</p><i>↗</i></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section portfolio-section" id="portfolio">
+      <div class="container">
+        <div class="section-heading centered reveal">
+          <div class="eyebrow"><span></span> Selected concepts</div>
+          <h2>Made to feel like <em>your brand.</em></h2>
+          <p>Concept websites built to demonstrate different visual directions and customer journeys.</p>
+        </div>
+        <div class="portfolio-grid">
+          <article class="project-card reveal">
+            <div class="project-visual beauty-visual"><div class="mock-browser"><span></span><span></span><span></span></div><div class="beauty-copy"><small>ÉLAN BEAUTY</small><strong>Feel like<br>yourself, elevated.</strong><i>EXPLORE SERVICES →</i></div></div>
+            <div class="project-info"><div><span>BEAUTY SALON</span><h3>Élan Beauty Studio</h3></div><p>Demo project</p></div>
+          </article>
+          <article class="project-card reveal">
+            <div class="project-visual dental-visual"><div class="mock-browser"><span></span><span></span><span></span></div><div class="dental-shape">✦</div><div class="dental-copy"><small>CLEARLINE DENTAL</small><strong>A better reason<br>to smile.</strong><i>BOOK A VISIT →</i></div></div>
+            <div class="project-info"><div><span>DENTAL CLINIC</span><h3>Clearline Dental</h3></div><p>Demo project</p></div>
+          </article>
+          <article class="project-card reveal">
+            <div class="project-visual barber-visual"><div class="mock-browser"><span></span><span></span><span></span></div><div class="barber-badge">N<br><b>&</b><br>CO</div><div class="barber-copy"><strong>CRAFTED FOR<br>YOUR BEST LOOK.</strong><i>RESERVE A CHAIR →</i></div></div>
+            <div class="project-info"><div><span>BARBERSHOP</span><h3>North & Co.</h3></div><p>Demo project</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-section">
+      <div class="container trust-inner reveal">
+        <span class="trust-mark">V</span>
+        <div><div class="eyebrow"><span></span> Honest by design</div><h2>A working demonstration of what we can build for your business.</h2></div>
+        <p>This portfolio website is a demo project by Valiev Company. The brands and booking requests shown here are fictional and used only to demonstrate the design and user experience.</p>
+      </div>
+    </section>
+
+    <section class="section final-cta" id="contact">
+      <div class="cta-glow"></div>
+      <div class="container reveal">
+        <span class="cta-kicker">LET'S BUILD SOMETHING THAT WORKS</span>
+        <h2>Ready to turn your Instagram traffic into <em>bookings?</em></h2>
+        <a class="button button-primary button-large" href="mailto:hello@example.com?subject=Instagram%20Booking%20Website">Start Your Project <span>↗</span></a>
+        <p>Replace the placeholder email with your preferred Fiverr or business contact.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-main">
+      <a class="brand" href="#top"><span class="brand-mark">V</span><span>Valiev Company</span></a>
+      <p>Modern websites for ambitious local businesses.</p>
+      <a class="footer-contact" href="mailto:hello@example.com">Contact <span>↗</span></a>
+    </div>
+    <div class="container footer-bottom">
+      <span>© <span id="current-year"></span> Valiev Company</span>
+      <div><a href="#" data-placeholder="Instagram">Instagram</a><a href="#" data-placeholder="Fiverr">Fiverr</a></div>
+      <span>Built for demonstration</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
