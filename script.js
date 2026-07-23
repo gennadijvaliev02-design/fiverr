@@ -195,3 +195,27 @@ bookingForm.addEventListener('submit', (event) => {
 
 document.getElementById('current-year').textContent = new Date().getFullYear();
 renderCalendar();
+
+
+const contactTrigger = document.getElementById('contact-trigger');
+const contactModal = document.getElementById('contact-modal');
+
+function closeContactModal() {
+  contactModal.classList.remove('open');
+  contactModal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('modal-open');
+}
+
+contactTrigger.addEventListener('click', () => {
+  contactModal.classList.add('open');
+  contactModal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
+});
+
+contactModal.querySelectorAll('[data-contact-close]').forEach((element) => {
+  element.addEventListener('click', closeContactModal);
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && contactModal.classList.contains('open')) closeContactModal();
+});
