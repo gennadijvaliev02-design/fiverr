@@ -269,7 +269,7 @@
       <div class="container reveal">
         <span class="cta-kicker">LET'S BUILD SOMETHING THAT WORKS</span>
         <h2>Ready to turn your Instagram traffic into <em>bookings?</em></h2>
-        <a class="button button-primary button-large" href="mailto:gennadijvaliev02@gmail.com?subject=Instagram%20Booking%20Website">Start Your Project <span>↗</span></a>
+        <button class="button button-primary button-large contact-trigger" id="contact-trigger" type="button">Start Your Project <span>↗</span></button>
         <p>Tell us what you need and we will get back to you shortly.</p>
       </div>
     </section>
@@ -287,6 +287,23 @@
       <span>Built for demonstration</span>
     </div>
   </footer>
+
+
+  <div class="contact-modal" id="contact-modal" aria-hidden="true">
+    <div class="contact-backdrop" data-contact-close></div>
+    <div class="contact-dialog" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+      <button class="contact-close" type="button" data-contact-close aria-label="Close contact options">×</button>
+      <span class="cta-kicker">CHOOSE A CONTACT METHOD</span>
+      <h2 id="contact-modal-title">Let’s connect.</h2>
+      <p>Choose the channel that works best for you.</p>
+      <div class="contact-options">
+        <a class="contact-option" href="https://www.instagram.com/byonafortuna/" target="_blank" rel="noopener"><span class="contact-option-icon">◎</span><span><strong>Instagram</strong><small>View my work and updates</small></span><b>↗</b></a>
+        <a class="contact-option" href="https://www.tiktok.com/@user2492868066313" target="_blank" rel="noopener"><span class="contact-option-icon">♪</span><span><strong>TikTok</strong><small>Watch project videos</small></span><b>↗</b></a>
+        <a class="contact-option" href="mailto:gennadijvaliev02@gmail.com?subject=Instagram%20Booking%20Website"><span class="contact-option-icon">✉</span><span><strong>Email</strong><small>Send me a project brief</small></span><b>↗</b></a>
+        <a class="contact-option" href="https://www.fiverr.com/mr_suparman" target="_blank" rel="noopener"><span class="contact-option-icon">F</span><span><strong>Fiverr</strong><small>View my services and order</small></span><b>↗</b></a>
+      </div>
+    </div>
+  </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="script.js"></script>
