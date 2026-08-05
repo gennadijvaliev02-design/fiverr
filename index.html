@@ -7,6 +7,7 @@
   <meta name="theme-color" content="#07111f">
   <title>Instagram Booking Website | Valiev Company</title>
   <link rel="stylesheet" href="styles.css">
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
   <header class="site-header" id="top">
@@ -29,43 +30,32 @@
 
   <main>
     <section class="hero section">
+      <div class="hero-stars" aria-hidden="true"></div>
       <div class="hero-glow hero-glow-one"></div>
       <div class="hero-glow hero-glow-two"></div>
       <div class="container hero-grid">
         <div class="hero-copy reveal">
-          <div class="eyebrow"><span></span> Websites built for Instagram traffic</div>
-          <h1>Turn Instagram Visitors Into <em>Real Bookings</em></h1>
-          <p class="hero-lead">We build fast, modern booking websites for local businesses.</p>
+          <div class="eyebrow"><span></span> Valiev Company · Digital experiences</div>
+          <h1>Make your business <em>impossible to ignore.</em></h1>
+          <p class="hero-lead">We craft premium websites and booking experiences that make every visit feel personal, effortless and worth remembering.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#demo">View Demo <span aria-hidden="true">↗</span></a>
-            <a class="button button-secondary" href="#contact">Get Your Website</a>
+            <a class="button button-primary" href="#demo">Explore our work <span aria-hidden="true">↗</span></a>
+            <a class="button button-secondary" href="#contact">Start a project</a>
           </div>
           <div class="hero-proof" aria-label="Website features">
-            <div><span class="check">✓</span> Mobile-first</div>
-            <div><span class="check">✓</span> Fast & focused</div>
-            <div><span class="check">✓</span> Custom branded</div>
+            <div><span class="check">✓</span> Premium by design</div>
+            <div><span class="check">✓</span> Made to convert</div>
+            <div><span class="check">✓</span> Built around your brand</div>
           </div>
         </div>
 
-        <div class="phone-stage reveal" aria-label="Mobile booking website preview">
-          <div class="float-card float-card-top"><span class="status-dot"></span> New booking</div>
-          <div class="phone-shell">
-            <div class="phone-top"><span>9:41</span><span class="phone-island"></span><span>● ◒</span></div>
-            <div class="phone-screen">
-              <div class="preview-cover">
-                <span class="preview-logo">NORTH & CO.</span>
-                <span class="preview-tag">Premium Grooming</span>
-              </div>
-              <div class="preview-content">
-                <p class="preview-kicker">WELCOME</p>
-                <h2>Look sharp.<br>Feel confident.</h2>
-                <p>Reserve your next appointment in less than a minute.</p>
-                <a href="#demo" class="preview-button">Book now <span>→</span></a>
-                <div class="preview-rating"><span>★★★★★</span> Demo business</div>
-              </div>
-            </div>
-          </div>
-          <div class="float-card float-card-bottom"><strong>01:00</strong><span>Average booking flow</span></div>
+        <div class="robot-stage reveal" aria-label="3D assistant robot">
+          <div class="robot-halo" aria-hidden="true"></div>
+          <div class="robot-orbit robot-orbit-one" aria-hidden="true"></div>
+          <div class="robot-orbit robot-orbit-two" aria-hidden="true"></div>
+          <model-viewer class="robot-model" src="multi_bot_assistant_robot.glb" alt="Friendly Valiev Company digital assistant" camera-orbit="0deg 82deg 105%" field-of-view="28deg" shadow-intensity="1" exposure="1.2" interaction-prompt="none" loading="eager"></model-viewer>
+          <div class="robot-message"><span class="status-dot"></span> Your digital guide</div>
+          <div class="robot-caption"><span>DESIGNED TO CONNECT</span><strong>Warm experience.<br>Sharp results.</strong></div>
         </div>
       </div>
     </section>
