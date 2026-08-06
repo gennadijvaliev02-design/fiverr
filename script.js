@@ -227,12 +227,9 @@ const robotMessageText = document.querySelector('.robot-message-text');
 if (robotViewer && robotStage) {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const baseOrbit = { theta: 69, phi: 82 };
-  let pointerX = 0;
-  let pointerY = 0;
-  let currentTheta = baseOrbit.theta;
-  let currentPhi = baseOrbit.phi;
-  let lightsOn = false;
-  let lastOrbitUpdate = 0;
+  let lightTimer;
+  let pointerTimer;
+  let lastPointerUpdate = 0;
 
   function setMaterialLight(material, color, emissive, strength) {
     if (!material) return;
@@ -246,11 +243,10 @@ if (robotViewer && robotStage) {
     const ears = robotViewer.model?.getMaterialByName('Warm earpieces');
     if (!bodyLight || !ears) return;
 
-    lightsOn = active;
     if (active) {
       setMaterialLight(bodyLight, '#ff294d', '#ff082a', 4);
       setMaterialLight(ears, '#61e7ff', '#24c8ed', 2.6);
-      robotMessageText.textContent = 'Systems glowing';
+      robotMessageText.textContent = 'Light show';
     } else {
       setMaterialLight(bodyLight, '#05080d', '#000000', 1);
       setMaterialLight(ears, '#6e5149', '#000000', 1);
@@ -259,44 +255,52 @@ if (robotViewer && robotStage) {
     robotStage.classList.toggle('lights-on', active);
   }
 
-  robotViewer.addEventListener('click', (event) => {
-    if (!robotViewer.modelIsVisible || typeof robotViewer.materialFromPoint !== 'function') return;
-    const material = robotViewer.materialFromPoint(event.clientX, event.clientY);
-    if (material) setRobotLights(!lightsOn);
-  });
+  function runLightSequence() {
+    window.clearTimeout(lightTimer);
+    const sequence = [true, false, true, false, true, false, true, false];
+    let step = 0;
+
+    function nextFlash() {
+      if (step >= sequence.length) {
+        setRobotLights(false);
+        return;
+      }
+      setRobotLights(sequence[step]);
+      step += 1;
+      lightTimer = window.setTimeout(nextFlash, 290);
+    }
+
+    nextFlash();
+  }
+
+  robotViewer.addEventListener('click', runLightSequence);
 
   robotViewer.addEventListener('keydown', (event) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
-      setRobotLights(!lightsOn);
+      runLightSequence();
     }
   });
 
   robotStage.addEventListener('pointermove', (event) => {
     if (event.pointerType === 'touch') return;
+    const now = performance.now();
+    if (now - lastPointerUpdate < 85) return;
+    lastPointerUpdate = now;
     const bounds = robotStage.getBoundingClientRect();
-    pointerX = ((event.clientX - bounds.left) / bounds.width - 0.5) * 2;
-    pointerY = ((event.clientY - bounds.top) / bounds.height - 0.5) * 2;
+    const pointerX = ((event.clientX - bounds.left) / bounds.width - 0.5) * 2;
+    const pointerY = ((event.clientY - bounds.top) / bounds.height - 0.5) * 2;
+    const theta = baseOrbit.theta + pointerX * 4.5;
+    const phi = baseOrbit.phi + pointerY * 2;
+    robotViewer.cameraOrbit = `${theta.toFixed(2)}deg ${phi.toFixed(2)}deg 105%`;
   });
 
   robotStage.addEventListener('pointerleave', () => {
-    pointerX = 0;
-    pointerY = 0;
+    window.clearTimeout(pointerTimer);
+    pointerTimer = window.setTimeout(() => {
+      robotViewer.cameraOrbit = `${baseOrbit.theta}deg ${baseOrbit.phi}deg 105%`;
+    }, 120);
   });
 
-  function animateRobot(time) {
-    if (time - lastOrbitUpdate > 45) {
-      const idleTheta = reducedMotion ? 0 : Math.sin(time / 1700) * 1.8;
-      const idlePhi = reducedMotion ? 0 : Math.sin(time / 2200) * 0.8;
-      const targetTheta = baseOrbit.theta + idleTheta + pointerX * 6;
-      const targetPhi = baseOrbit.phi + idlePhi + pointerY * 2.8;
-      currentTheta += (targetTheta - currentTheta) * 0.16;
-      currentPhi += (targetPhi - currentPhi) * 0.16;
-      robotViewer.cameraOrbit = `${currentTheta.toFixed(2)}deg ${currentPhi.toFixed(2)}deg 105%`;
-      lastOrbitUpdate = time;
-    }
-    window.requestAnimationFrame(animateRobot);
-  }
-
-  window.requestAnimationFrame(animateRobot);
+  if (reducedMotion) robotViewer.style.animation = 'none';
 }

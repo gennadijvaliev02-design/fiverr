@@ -48,11 +48,11 @@ h1 em,h2 em{font-style:normal;color:var(--accent)}
 .robot-halo{position:absolute;z-index:-1;width:min(100%,505px);aspect-ratio:1;border:1px solid rgba(184,242,77,.16);border-radius:50%;background:radial-gradient(circle,rgba(184,242,77,.13),rgba(73,150,255,.06) 42%,transparent 70%);box-shadow:0 0 100px rgba(74,147,255,.1)}
 .robot-orbit{position:absolute;z-index:-1;border:1px solid rgba(197,234,255,.15);border-radius:50%;transform:rotate(-28deg)}
 .robot-orbit-one{width:91%;height:34%;top:44%}.robot-orbit-two{width:72%;height:25%;top:50%;border-color:rgba(184,242,77,.16);transform:rotate(32deg)}
-.robot-model{width:min(100%,560px);height:590px;--poster-color:transparent;cursor:pointer;filter:drop-shadow(0 34px 28px rgba(0,0,0,.42));transform-origin:50% 72%;animation:robot-idle-float 5.2s ease-in-out infinite}
+.robot-model{width:min(100%,560px);height:590px;--poster-color:transparent;cursor:pointer;transform-origin:50% 72%;will-change:transform;animation:robot-idle-float 6.4s ease-in-out infinite}
 .robot-model:focus-visible{outline:1px solid rgba(184,242,77,.65);outline-offset:4px;border-radius:45%}
 .robot-stage.lights-on .robot-halo{background:radial-gradient(circle at 54% 61%,rgba(255,35,70,.25),transparent 17%),radial-gradient(circle at 50% 42%,rgba(97,231,255,.14),rgba(73,150,255,.07) 43%,transparent 70%);border-color:rgba(97,231,255,.25);box-shadow:0 0 110px rgba(255,35,70,.12)}
 .robot-stage.lights-on .status-dot{background:#61e7ff;box-shadow:0 0 0 5px rgba(97,231,255,.11),0 0 15px rgba(97,231,255,.6)}
-@keyframes robot-idle-float{0%,100%{transform:translateY(0) rotate(-.25deg)}50%{transform:translateY(-10px) rotate(.35deg)}}
+@keyframes robot-idle-float{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-8px,0)}}
 .robot-message,.robot-caption{position:absolute;z-index:2;border:1px solid rgba(225,242,255,.12);background:rgba(11,29,45,.68);backdrop-filter:blur(16px);box-shadow:0 18px 45px rgba(0,0,0,.18)}
 .robot-message{top:21%;right:0;padding:13px 17px;border-radius:100px;color:#e6f1f8;font-size:11px}.robot-caption{bottom:11%;left:-6px;display:flex;flex-direction:column;gap:7px;padding:15px 18px;border-radius:16px}.robot-caption span{color:var(--accent);font-size:8px;font-weight:700;letter-spacing:1.3px}.robot-caption strong{font:700 15px/1.2 "Manrope";letter-spacing:-.45px}
 .phone-stage{position:relative;display:flex;justify-content:center;min-height:580px}
