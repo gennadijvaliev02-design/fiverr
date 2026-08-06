@@ -226,10 +226,14 @@ const robotMessageText = document.querySelector('.robot-message-text');
 
 if (robotViewer && robotStage) {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const baseOrbit = { theta: 69, phi: 82 };
   let lightTimer;
-  let pointerTimer;
+  let blinkTimer;
   let lastPointerUpdate = 0;
+  let modelReady = false;
+  let greeting = false;
+  let pendingGreeting = false;
+  let hasGreeted = false;
+  let lookTime = 0.5;
 
   function setMaterialLight(material, color, emissive, strength) {
     if (!material) return;
@@ -273,14 +277,92 @@ if (robotViewer && robotStage) {
     nextFlash();
   }
 
-  robotViewer.addEventListener('click', runLightSequence);
+  function setEyes(open) {
+    const eyes = robotViewer.model?.getMaterialByName('Eye lights');
+    if (!eyes) return;
+    if (open) {
+      setMaterialLight(eyes, '#ebfbff', '#e6ffff', 2.1);
+    } else {
+      setMaterialLight(eyes, '#02070d', '#000000', 1);
+    }
+  }
+
+  function scheduleBlink() {
+    window.clearTimeout(blinkTimer);
+    blinkTimer = window.setTimeout(() => {
+      setEyes(false);
+      blinkTimer = window.setTimeout(() => {
+        setEyes(true);
+        scheduleBlink();
+      }, 115);
+    }, 2800 + Math.random() * 2600);
+  }
+
+  async function activateLook() {
+    if (!modelReady || !robotViewer.availableAnimations.includes('Look')) return;
+    robotViewer.animationName = 'Look';
+    await robotViewer.updateComplete;
+    robotViewer.pause();
+    robotViewer.currentTime = Math.max(0, Math.min(robotViewer.duration, lookTime * robotViewer.duration));
+  }
+
+  async function waveHello() {
+    if (!modelReady) {
+      pendingGreeting = true;
+      return;
+    }
+    if (greeting || !robotViewer.availableAnimations.includes('Wave')) return;
+
+    greeting = true;
+    pendingGreeting = false;
+    robotStage.classList.add('is-greeting');
+    robotViewer.animationName = 'Wave';
+    await robotViewer.updateComplete;
+    robotViewer.currentTime = 0;
+    robotViewer.play({ repetitions: 1 });
+  }
+
+  function greetAndGlow() {
+    runLightSequence();
+    waveHello();
+  }
+
+  robotViewer.addEventListener('click', greetAndGlow);
 
   robotViewer.addEventListener('keydown', (event) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
-      runLightSequence();
+      greetAndGlow();
     }
   });
+
+  robotViewer.addEventListener('finished', () => {
+    if (!greeting) return;
+    greeting = false;
+    robotStage.classList.remove('is-greeting');
+    activateLook();
+  });
+
+  async function handleModelLoad() {
+    if (modelReady) return;
+    modelReady = true;
+    setEyes(true);
+    scheduleBlink();
+    await activateLook();
+    if (pendingGreeting) waveHello();
+  }
+
+  robotViewer.addEventListener('load', handleModelLoad, { once: true });
+  if (robotViewer.loaded) handleModelLoad();
+
+  const greetingObserver = new IntersectionObserver((entries) => {
+    if (hasGreeted || !entries.some((entry) => entry.isIntersecting)) return;
+    hasGreeted = true;
+    if (!reducedMotion) waveHello();
+    greetingObserver.disconnect();
+  }, { threshold: 0.55 });
+
+  greetingObserver.observe(robotStage);
 
   robotStage.addEventListener('pointermove', (event) => {
     if (event.pointerType === 'touch') return;
@@ -289,17 +371,17 @@ if (robotViewer && robotStage) {
     lastPointerUpdate = now;
     const bounds = robotStage.getBoundingClientRect();
     const pointerX = ((event.clientX - bounds.left) / bounds.width - 0.5) * 2;
-    const pointerY = ((event.clientY - bounds.top) / bounds.height - 0.5) * 2;
-    const theta = baseOrbit.theta + pointerX * 4.5;
-    const phi = baseOrbit.phi + pointerY * 2;
-    robotViewer.cameraOrbit = `${theta.toFixed(2)}deg ${phi.toFixed(2)}deg 105%`;
+    lookTime = Math.max(0, Math.min(1, (pointerX + 1) / 2));
+    if (modelReady && !greeting && robotViewer.animationName === 'Look') {
+      robotViewer.currentTime = lookTime * robotViewer.duration;
+    }
   });
 
   robotStage.addEventListener('pointerleave', () => {
-    window.clearTimeout(pointerTimer);
-    pointerTimer = window.setTimeout(() => {
-      robotViewer.cameraOrbit = `${baseOrbit.theta}deg ${baseOrbit.phi}deg 105%`;
-    }, 120);
+    lookTime = 0.5;
+    if (modelReady && !greeting && robotViewer.animationName === 'Look') {
+      robotViewer.currentTime = lookTime * robotViewer.duration;
+    }
   });
 
   if (reducedMotion) robotViewer.style.animation = 'none';
